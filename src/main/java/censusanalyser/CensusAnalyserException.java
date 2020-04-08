@@ -10,6 +10,10 @@ public class CensusAnalyserException extends Exception {
         UNABLE_TO_PARSE;
     }
 
+    public CensusAnalyserException(String message, String name) {
+        super(message);
+        this.type = ExceptionType.valueOf(name);
+    }
     ExceptionType type;
 
     public CensusAnalyserException(String message, ExceptionType type) {

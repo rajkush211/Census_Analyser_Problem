@@ -4,14 +4,12 @@ import com.csvbuilder.CSVBuilderException;
 import com.csvbuilder.IcsvBuilder;
 import com.google.gson.Gson;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static censusanalyser.CSVBuilderFactory.createCSVBuilder;
 

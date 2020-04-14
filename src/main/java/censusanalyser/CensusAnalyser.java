@@ -70,15 +70,15 @@ public class CensusAnalyser {
     }
 
     public  String getPopulationWiseSortedCensusData(String csvFilePath) throws CensusAnalyserException {
-            loadIndiaCensusData(csvFilePath);
-            if (csvFileList == null || csvFileList.size() == 0) {
-                throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
-            }
-            Comparator<CensusDAO> censusComparator = Comparator.comparing(censusDAO -> censusDAO.getPopulation());
-            this.sort(censusComparator);
-            Collections.reverse(csvFileList);
-            String toJson = new Gson().toJson(csvFileList);
-            return toJson;
+        loadIndiaCensusData(csvFilePath);
+        if (csvFileList == null || csvFileList.size() == 0) {
+            throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CensusDAO> censusComparator = Comparator.comparing(censusDAO -> censusDAO.getPopulation());
+        this.sort(censusComparator);
+        Collections.reverse(csvFileList);
+        String toJson = new Gson().toJson(csvFileList);
+        return toJson;
     }
 
     public  String getDensityWiseSortedCensusData(String csvFilePath) throws CensusAnalyserException {
@@ -87,6 +87,18 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         Comparator<CensusDAO> censusComparator = Comparator.comparing(censusDAO -> censusDAO.getDensityPerSqKm());
+        this.sort(censusComparator);
+        Collections.reverse(csvFileList);
+        String toJson = new Gson().toJson(csvFileList);
+        return toJson;
+    }
+
+    public  String getAreaWiseSortedCensusData(String csvFilePath) throws CensusAnalyserException {
+        loadIndiaCensusData(csvFilePath);
+        if (csvFileList == null || csvFileList.size() == 0) {
+            throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CensusDAO> censusComparator = Comparator.comparing(censusDAO -> censusDAO.getAreaInSqKm());
         this.sort(censusComparator);
         Collections.reverse(csvFileList);
         String toJson = new Gson().toJson(csvFileList);
@@ -107,8 +119,6 @@ public class CensusAnalyser {
 
         }
     }
-
-
 }
 
 

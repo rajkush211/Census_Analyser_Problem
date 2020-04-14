@@ -70,7 +70,6 @@ public class CensusAnalyser {
     }
 
     public  String getPopulationWiseSortedCensusData(String csvFilePath) throws CensusAnalyserException {
-        if (csvFilePath == "./src/test/resources/IndiaStateCensusData.csv") {
             loadIndiaCensusData(csvFilePath);
             if (csvFileList == null || csvFileList.size() == 0) {
                 throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
@@ -80,13 +79,16 @@ public class CensusAnalyser {
             Collections.reverse(csvFileList);
             String toJson = new Gson().toJson(csvFileList);
             return toJson;
-        }
-        loadIndiaStateData(csvFilePath);
+    }
+
+    public  String getDensityWiseSortedCensusData(String csvFilePath) throws CensusAnalyserException {
+        loadIndiaCensusData(csvFilePath);
         if (csvFileList == null || csvFileList.size() == 0) {
             throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
-        Comparator<CensusDAO> censusComparator = Comparator.comparing(censusDAO -> censusDAO.getStateCode());
+        Comparator<CensusDAO> censusComparator = Comparator.comparing(censusDAO -> censusDAO.getDensityPerSqKm());
         this.sort(censusComparator);
+        Collections.reverse(csvFileList);
         String toJson = new Gson().toJson(csvFileList);
         return toJson;
     }

@@ -1,5 +1,10 @@
 package censusanalyser;
 
+import com.csvbuilder.OpenCSVBuilder;
+import com.opencsv.bean.CsvBindByName;
+
+import java.util.Comparator;
+
 public class CensusDAO {
     private String srNo;
     private String state;
@@ -8,6 +13,11 @@ public class CensusDAO {
     private int densityPerSqKm;
     private String stateCode;
     private String tin;
+    private String stateID;
+    private String housingDensity;
+
+    public CensusDAO() {
+    }
 
     public CensusDAO(IndiaCensusCSV indiaCensusCSV) {
         this.state = indiaCensusCSV.getState();
@@ -21,6 +31,31 @@ public class CensusDAO {
         this.state = indiaStateCodeCSV.getStateName();
         this.stateCode = indiaStateCodeCSV.getStateCode();
         this.tin = indiaStateCodeCSV.getTin();
+    }
+
+    public CensusDAO(USCensusCSV usCensusCSV) {
+        this.state = usCensusCSV.getState();
+        this.population = usCensusCSV.getPopulation();
+        this.areaInSqKm = usCensusCSV.getArea();
+        this.densityPerSqKm = usCensusCSV.getPopulationDensity();
+        this.stateID = usCensusCSV.getStateID();
+        this.housingDensity = usCensusCSV.getHousingDensity();
+    }
+
+    public String getStateID() {
+        return stateID;
+    }
+
+    public void setStateID(String stateID) {
+        this.stateID = stateID;
+    }
+
+    public String getHousingDensity() {
+        return housingDensity;
+    }
+
+    public void setHousingDensity(String housingDensity) {
+        this.housingDensity = housingDensity;
     }
 
     public String getSrNo() {

@@ -10,30 +10,30 @@ public class USCensusCSV {
     private String state;
 
     @CsvBindByName(column = "Population Density")
-    private int populationDensity;
+    private double populationDensity;
 
     @CsvBindByName(column = "Population")
     private int population;
 
     @CsvBindByName(column = "Total area")
-    private int area;
+    private double area;
 
     @CsvBindByName(column = "Housing units")
-    private String housingUnits;
+    private int housingUnits;
 
     @CsvBindByName(column = "Water area")
-    private String waterArea;
+    private double waterArea;
 
     @CsvBindByName(column = "Land Area")
-    private String landArea;
+    private double landArea;
 
     @CsvBindByName(column = "Housing Density")
-    private String housingDensity;
+    private double housingDensity;
 
     public USCensusCSV() {
     }
 
-    public USCensusCSV(String stateID, String state, int population, int areaInSqKm, int densityPerSqKm) {
+    public USCensusCSV(String stateID, String state, int population, double areaInSqKm, double densityPerSqKm) {
         this.stateID = stateID;
         this.state = state;
         this.population = population;
@@ -57,11 +57,11 @@ public class USCensusCSV {
         this.state = state;
     }
 
-    public int getPopulationDensity() {
+    public double getPopulationDensity() {
         return populationDensity;
     }
 
-    public void setPopulationDensity(int populationDensity) {
+    public void setPopulationDensity(double populationDensity) {
         this.populationDensity = populationDensity;
     }
 
@@ -73,7 +73,7 @@ public class USCensusCSV {
         this.population = population;
     }
 
-    public int getArea() {
+    public double getArea() {
         return area;
     }
 
@@ -81,35 +81,33 @@ public class USCensusCSV {
         this.area = area;
     }
 
-    public String getHousingUnits() {
+    public int getHousingUnits() {
         return housingUnits;
     }
 
-    public void setHousingUnits(String housingUnits) {
+    public void setHousingUnits(int housingUnits) {
         this.housingUnits = housingUnits;
     }
 
-    public String getWaterArea() {
+    public double getWaterArea() {
         return waterArea;
     }
 
-    public void setWaterArea(String waterArea) {
+    public void setWaterArea(double waterArea) {
         this.waterArea = waterArea;
     }
 
-    public String getLandArea() {
-        return landArea;
-    }
+    public double getLandArea() { return landArea; }
 
-    public void setLandArea(String landArea) {
+    public void setLandArea(double landArea) {
         this.landArea = landArea;
     }
 
-    public String getHousingDensity() {
+    public double getHousingDensity() {
         return housingDensity;
     }
 
-    public void setHousingDensity(String housingDensity) {
+    public void setHousingDensity(double housingDensity) {
         this.housingDensity = housingDensity;
     }
 }

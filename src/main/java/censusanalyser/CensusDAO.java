@@ -1,20 +1,15 @@
 package censusanalyser;
 
-import com.csvbuilder.OpenCSVBuilder;
-import com.opencsv.bean.CsvBindByName;
-
-import java.util.Comparator;
-
 public class CensusDAO {
     private String srNo;
     private String state;
     private int population;
-    private int areaInSqKm;
-    private int densityPerSqKm;
+    private double areaInSqKm;
+    private double densityPerSqKm;
     private String stateCode;
     private String tin;
     private String stateID;
-    private String housingDensity;
+    private double housingDensity;
 
     public CensusDAO() {
     }
@@ -50,11 +45,11 @@ public class CensusDAO {
         this.stateID = stateID;
     }
 
-    public String getHousingDensity() {
+    public double getHousingDensity() {
         return housingDensity;
     }
 
-    public void setHousingDensity(String housingDensity) {
+    public void setHousingDensity(double housingDensity) {
         this.housingDensity = housingDensity;
     }
 
@@ -82,7 +77,7 @@ public class CensusDAO {
         this.population = population;
     }
 
-    public int getAreaInSqKm() {
+    public double getAreaInSqKm() {
         return areaInSqKm;
     }
 
@@ -90,7 +85,7 @@ public class CensusDAO {
         this.areaInSqKm = areaInSqKm;
     }
 
-    public int getDensityPerSqKm() {
+    public double getDensityPerSqKm() {
         return densityPerSqKm;
     }
 

@@ -1,29 +1,21 @@
 package censusanalyser;
 
-import com.csvbuilder.CSVBuilderException;
-import com.csvbuilder.IcsvBuilder;
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static censusanalyser.CSVBuilderFactory.createCSVBuilder;
 
 public class CensusAnalyser<E> {
+//    public static Object Country;
 
-    public enum Country {
-        INDIA,
-        US;
-    }
+//    public enum Country {
+//        INDIA,
+//        US;
+//    }
 
-    private Country country;
+    private CountryEnum.Country country;
 
-    public CensusAnalyser(Country country) {
+    public CensusAnalyser(CountryEnum.Country country) {
         this.country = country;
     }
 
@@ -33,13 +25,13 @@ public class CensusAnalyser<E> {
     List csvFileList =new ArrayList<CensusDAO>();
     Map<String, CensusDAO> csvFileMap = new HashMap<>();
 
-    public int loadCensusData(Country country, String csvFilePath) throws CensusAnalyserException {
+    public int loadCensusData(CountryEnum.Country country, String csvFilePath) throws CensusAnalyserException {
         csvFileMap = CensusAdapterFactory.getCensusData(country, csvFilePath);
         csvFileList = (List) csvFileMap.values().stream().collect(Collectors.toList());
         return csvFileMap.size();
     }
 
-    public  String getStateNameWiseSortedCensusData(Country country, String csvFilePath) throws CensusAnalyserException {
+    public  String getStateNameWiseSortedCensusData(CountryEnum.Country country, String csvFilePath) throws CensusAnalyserException {
         loadCensusData(country, csvFilePath);
         if (csvFileList == null || csvFileList.size() == 0) {
             throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
@@ -50,7 +42,7 @@ public class CensusAnalyser<E> {
         return toJson;
     }
 
-    public  String getPopulationWiseSortedCensusData(Country country, String csvFilePath) throws CensusAnalyserException {
+    public  String getPopulationWiseSortedCensusData(CountryEnum.Country country, String csvFilePath) throws CensusAnalyserException {
         loadCensusData(country, csvFilePath);
         if (csvFileList == null || csvFileList.size() == 0) {
             throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
@@ -62,7 +54,7 @@ public class CensusAnalyser<E> {
         return toJson;
     }
 
-    public  String getDensityWiseSortedCensusData(Country country, String csvFilePath) throws CensusAnalyserException {
+    public  String getDensityWiseSortedCensusData(CountryEnum.Country country, String csvFilePath) throws CensusAnalyserException {
         loadCensusData(country, csvFilePath);
         if (csvFileList == null || csvFileList.size() == 0) {
             throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
@@ -74,7 +66,7 @@ public class CensusAnalyser<E> {
         return toJson;
     }
 
-    public  String getAreaWiseSortedCensusData(Country country, String csvFilePath) throws CensusAnalyserException {
+    public  String getAreaWiseSortedCensusData(CountryEnum.Country country, String csvFilePath) throws CensusAnalyserException {
         loadCensusData(country, csvFilePath);
         if (csvFileList == null || csvFileList.size() == 0) {
             throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
@@ -99,6 +91,12 @@ public class CensusAnalyser<E> {
             }
 
         }
+    }
+
+    public static void main(String[] args) throws CensusAnalyserException {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        String stateNameWiseSortedCensusData = censusAnalyser.getStateNameWiseSortedCensusData(CountryEnum.Country.US, "src/test/resources/USCensusFile.csv");
+        System.out.println(stateNameWiseSortedCensusData);
     }
 }
 

@@ -9,8 +9,10 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static censusanalyser.CensusAnalyser.Country.INDIA;
-import static censusanalyser.CensusAnalyser.Country.US;
+//import static censusanalyser.CensusAnalyser.Country.INDIA;
+//import static censusanalyser.CensusAnalyser.Country.US;
+import static censusanalyser.CountryEnum.Country.INDIA;
+import static censusanalyser.CountryEnum.Country.US;
 
 public class CensusAnalyserTest {
 
